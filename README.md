@@ -392,30 +392,6 @@ Check your inbox for the AI-generated weekly summary.
 
 ---
 
-## 📸 Sample Output
-
-> Add screenshots here after running the project.
-
-**Dashboard** — Replace with `assets/dashboard.png`
-
-**Weekly Insight Email** — Replace with `assets/email_sample.png`
-
-**Confluent Control Center** — Replace with `assets/kafka_topics.png`
-
----
-
-## 🔧 Improvements Over Original Article
-
-| Issue in original | Fix implemented |
-|---|---|
-| MySQL-specific SQL (`DATE_SUB`, `CURDATE()`) in utils.py | Converted to PostgreSQL syntax (`NOW() - INTERVAL '7 days'`) |
-| No deduplication — restarts caused duplicate rows | Added `UNIQUE (played_at, song_id)` + `ON CONFLICT DO NOTHING` |
-| iOS Shortcut used to trigger weekly email | Replaced with a direct Flask `/insight` endpoint callable via curl or Airflow |
-| Single monolithic consumer design (implied) | Four isolated consumers, one per dimension |
-| No `.env.example` or secret management guidance | Full `.env.example` with all required keys documented |
-
----
-
 ## 📚 What I Learned
 
 - **Event streaming architecture** — how Kafka decouples producers from consumers and why that matters for fault tolerance and scalability
