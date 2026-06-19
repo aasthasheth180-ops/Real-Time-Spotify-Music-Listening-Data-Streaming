@@ -39,13 +39,17 @@ SPOTIFY/
 ├── .env                        # Local infrastructure configurations
 ├── docker-compose.yml          # Single-command multi-node Kafka orchestrator
 └── README.md
+
+---
                
-#  Technical Highlights & Infrastructure Decisions
+##  Technical Highlights & Infrastructure Decisions
 Multi-Consumer Parallel Processing: Instead of utilizing a single monolithic consumer processing script, the processing tier splits metrics calculation into 4 separate, dedicated dimension paths (album, artist, item, song). This prevents compute bottlenecks and isolates processing failures.
 
 Asynchronous Decoupling: The Flask app backend serves web clients and streams background user metadata logs asynchronously into Kafka brokers via producer.py. This design protects user interaction layers from downstream analytical bottlenecks or failures.
 
 Production-Grade Infrastructure Management: The complete streaming infrastructure environment is cleanly containerized via docker-compose.yml. Developers can initialize local multi-node cluster platforms safely without needing to manually configure intricate system runtimes locally.
+
+-----
 
 ## Getting Started
 1. Environment Initialization
